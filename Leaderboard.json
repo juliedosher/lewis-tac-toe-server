@@ -1,0 +1,18 @@
+[
+    {
+        "UserName": "Default Player 1",
+        "TotalWins": 3
+    },
+    {
+        "UserName": "Default Player 2",
+        "TotalWins": 2
+    },
+    {
+        "UserName": "Default Player 4",
+        "TotalWins": 0
+    },
+    {
+        "UserName": "Default Player 3",
+        "TotalWins": 1
+    }
+]
