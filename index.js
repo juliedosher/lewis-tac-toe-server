@@ -4,6 +4,8 @@ const cors = require("cors")
 const dotenv = require('dotenv');
 var url = require('url');
 const { stringify } = require('querystring');
+const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 const port = process.env.PORT || 8080
 dotenv.config()
@@ -12,7 +14,7 @@ dotenv.config()
 app.use(express.static(__dirname + '/static'))
 app.use(cors({ origin: '*' }))
 
-const { auth } = require('express-openid-connect');
+
 
 
 const config = {
@@ -52,10 +54,9 @@ app.get('/api/GetLewisTacToeLeaders', (request, response) => {
 	response.json(leaderboard.slice(0, 3))
 })
 
-app.get('/profile', (req, res) => {
+app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
-
 
 // Custom 404 page.
 app.use((request, response) => {
