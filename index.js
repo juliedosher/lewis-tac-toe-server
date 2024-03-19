@@ -19,7 +19,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
-  baseURL: 'https://tic-tac-toe-server.azurewebsites.net',
+  baseURL: process.env.BASE_URL,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: 'https://dev-dtw5lccxhfi7uzjg.us.auth0.com'
 };
@@ -52,7 +52,7 @@ app.get('/api/GetLewisTacToeLeaders', (request, response) => {
 	response.json(leaderboard.slice(0, 3))
 })
 
-app.get('/profile', requiresAuth(), (req, res) => {
+app.get('/profile', (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
