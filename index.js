@@ -19,7 +19,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.SECRET,
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://tic-tac-toe-server.azurewebsites.net',
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: 'https://dev-dtw5lccxhfi7uzjg.us.auth0.com'
 };
@@ -52,6 +52,9 @@ app.get('/api/GetLewisTacToeLeaders', (request, response) => {
 	response.json(leaderboard.slice(0, 3))
 })
 
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 
 // Custom 404 page.
